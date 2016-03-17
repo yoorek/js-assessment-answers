@@ -16,7 +16,7 @@ exports.stringsAnswers = {
         var words = str.split(' '), rows = [];
 
         words.reduce(function (row, current, index) {
-            if (row.length + current.length > cols) {
+            if (row.length + current.length + 1 > cols) {
 
                 if (row) {
                     rows.push(row);
@@ -28,7 +28,13 @@ exports.stringsAnswers = {
 
                 return current;
             } else {
-                return row ? row + ' ' + current : current;
+                if (index === words.length - 1) {
+                    row ? rows.push(row + ' ' + current) : rows.push(current);
+                    return
+                }
+                else {
+                    return row ? row + ' ' + current : current;
+                }
             }
         });
 
